@@ -20,7 +20,6 @@ No project page is advertised as live until its real implementation lands. Human
 
 ```text
 Aurora-108/
-├── CLAUDE.md
 ├── README.md
 ├── index.html
 ├── manifest.webmanifest
