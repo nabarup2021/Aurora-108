@@ -1,0 +1,103 @@
+:root {
+  --liquid-ease: cubic-bezier(.22, 1, .36, 1);
+  --liquid-spring: cubic-bezier(.18, 1.35, .36, 1);
+}
+
+.liquid-surface {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.liquid-surface::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
+    radial-gradient(circle at 70% 58%, rgba(59,130,246,.12), transparent 38%);
+  filter: url("./liquid-filters.svg#liquid-displace");
+  opacity: .52;
+  pointer-events: none;
+}
+
+.liquid-blob {
+  border-radius: 42% 58% 61% 39% / 45% 44% 56% 55%;
+  animation: liquid-blob 10s var(--liquid-ease) infinite alternate;
+  will-change: border-radius, transform;
+}
+
+.liquid-press {
+  transform-origin: 50% 68%;
+  transition: transform var(--motion-fast) var(--liquid-spring);
+}
+
+.liquid-press:active {
+  transform: translateY(1px) scale(.96, .91);
+}
+
+.liquid-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-ripple::after {
+  content: "";
+  position: absolute;
+  left: var(--ripple-x, 50%);
+  top: var(--ripple-y, 50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .16;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.liquid-ripple.is-rippling::after {
+  animation: liquid-ripple var(--motion-slow) ease-out;
+}
+
+.liquid-fill-success {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-fill-success::before {
+  content: "";
+  position: absolute;
+  inset: auto -18% -65% -18%;
+  height: 130%;
+  border-radius: 48% 52% 0 0;
+  background: color-mix(in srgb, var(--success) 24%, transparent);
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.liquid-fill-success.is-success::before {
+  animation: liquid-fill-up 900ms var(--liquid-ease) forwards;
+}
+
+@keyframes liquid-blob {
+  0% { border-radius: 42% 58% 61% 39% / 45% 44% 56% 55%; transform: rotate(-2deg) translate3d(0,0,0); }
+  50% { border-radius: 58% 42% 43% 57% / 57% 48% 52% 43%; }
+  100% { border-radius: 61% 39% 57% 43% / 40% 56% 44% 60%; transform: rotate(3deg) translate3d(2px,-3px,0); }
+}
+
+@keyframes liquid-ripple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: .2; }
+  100% { transform: translate(-50%, -50%) scale(42); opacity: 0; }
+}
+
+@keyframes liquid-fill-up {
+  0% { transform: translateY(100%) rotate(-3deg); }
+  68% { transform: translateY(-2%) rotate(1deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-blob { animation: none; }
+  .liquid-ripple.is-rippling::after,
+  .liquid-fill-success.is-success::before { animation: none; }
+}

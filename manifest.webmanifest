@@ -1,0 +1,12 @@
+{
+  "name": "Aurora-108",
+  "short_name": "Aurora",
+  "description": "108 polished JavaScript projects unified by an iOS Glassmorphism and Liquid Morphism design system.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d14",
+  "theme_color": "#0f766e",
+  "orientation": "portrait-primary",
+  "icons": []
+}
