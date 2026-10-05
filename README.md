@@ -12,7 +12,6 @@ Batch 0 establishes the reusable product foundation:
 - PWA manifest + lightweight offline shell
 - Shared demo-mode storage and BroadcastChannel event bus
 - GitHub Pages deployment workflow
-- Project and UX constitution in `CLAUDE.md`
 
 No project page is advertised as live until its real implementation lands. Humanity may be impatient, but broken links are still worse.
 
